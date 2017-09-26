@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="BottomNavigation">
+        <attr name="elevation" format="dimension" />
+        <attr name="activeColor" format="color" />
+        <attr name="inActiveColor" format="color" />
+        <attr name="backgroundColor" format="color" />
+        <attr name="animationDuration" format="integer" />
+        <attr name="backgroundStyle" format="enum">
+            <enum name="background_style_default" value="0" />
+            <enum name="background_style_static" value="1" />
+            <enum name="background_style_ripple" value="2" />
+        </attr>
+        <attr name="autoHide" format="boolean" />
+    </declare-styleable>
+</resources>

@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">NoteRemember</string>
+    <string name="action_settings">Settings</string>
+    <string name="menu_notebook">Notebook</string>
+    <string name="menu_setting">Setting</string>
+    <string name="menu_calendar">Calendar</string>
+    <string name="menu_search">Search</string>
+</resources>
