@@ -6,7 +6,6 @@ import android.arch.lifecycle.OnLifecycleEvent
 import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
 import android.os.Bundle
-
 import com.nhahv.noteremember.R
 import com.nhahv.noteremember.databinding.ActivityCreateBinding
 import com.nhahv.noteremember.ui.LifecycleAppcompatActivity
@@ -25,7 +24,6 @@ class CreateActivity : LifecycleAppcompatActivity() {
         val binding: ActivityCreateBinding = DataBindingUtil.setContentView(this, R.layout.activity_create)
         binding.viewModel = mViewModel
     }
-
 
     class MyObserver : LifecycleObserver {
         @OnLifecycleEvent(Lifecycle.Event.ON_START)

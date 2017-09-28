@@ -1,5 +1,7 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="elevation_bottom_navigation">4dp</dimen>
-    <dimen name="bottom_navigation_height">50dp</dimen>
+    <dimen name="bottom_navigation_height">48dp</dimen>
+    <dimen name="dp_56">56dp</dimen>
+    <dimen name="dp_270">270dp</dimen>
 </resources>
