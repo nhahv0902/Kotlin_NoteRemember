@@ -16,6 +16,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.create.CreateActivity" />
+        <activity android:name=".ui.loadpicture.imagescreen.ImageScreenActivity"/>
     </application>
 
 </manifest>

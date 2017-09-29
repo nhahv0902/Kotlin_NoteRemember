@@ -4,7 +4,10 @@ import android.annotation.SuppressLint
 import android.support.design.internal.BottomNavigationItemView
 import android.support.design.internal.BottomNavigationMenuView
 import android.support.design.widget.BottomNavigationView
+import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.Toolbar
 import android.util.Log
+import org.apache.commons.lang3.StringUtils
 
 /**
  * Created by nhahv0902 on 9/28/17.
@@ -27,4 +30,11 @@ fun BottomNavigationView.removeShiftingMode() {
     } catch (e: IllegalAccessException) {
         Log.e("Error", "Unable to change value of shift mode", e)
     }
+}
+
+
+fun AppCompatActivity.setupToolbar(toolbar: Toolbar) {
+    setSupportActionBar(toolbar)
+    title = StringUtils.capitalize(title.toString())
+    supportActionBar?.setDisplayHomeAsUpEnabled(true)
 }

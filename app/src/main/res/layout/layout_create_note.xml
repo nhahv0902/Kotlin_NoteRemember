@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.nhahv.noteremember.ui.create.CreateViewModel" />
+    </data>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="16dp">
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/dayOfMonth"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:text="@{viewModel.dayOfMonth}"
+                    android:textSize="42sp" />
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/dayOfWeek"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_toEndOf="@id/dayOfMonth"
+                    android:layout_toRightOf="@id/dayOfMonth"
+                    android:text="@{viewModel.dayOfWeek}"
+                    android:textSize="15sp" />
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/monthOfYear"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/dayOfWeek"
+                    android:layout_alignStart="@+id/dayOfWeek"
+                    android:layout_below="@+id/dayOfWeek"
+                    android:text="@{viewModel.monthOfYear}"
+                    android:textAllCaps="true"
+                    android:textSize="18sp" />
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/timeOfDay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@+id/dayOfWeek"
+                    android:text="@{viewModel.notebook.time}"
+                    android:textSize="16sp" />
+            </RelativeLayout>
+
+            <android.support.v7.widget.AppCompatEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:background="@color/color_grey_200"
+                android:hint="@string/hint_title_notebook"
+                android:inputType="textCapSentences"
+                android:paddingBottom="8dp"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
+                android:paddingTop="8dp"
+                android:text="@={viewModel.notebook.title}"
+                android:textColorHint="@color/color_grey_757575" />
+
+            <android.support.v7.widget.AppCompatEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="16dp"
+                android:background="@color/color_grey_200"
+                android:gravity="start|top"
+                android:hint="@string/hint_text_notebook"
+                android:inputType="textCapSentences"
+                android:minHeight="120dp"
+                android:paddingBottom="8dp"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
+                android:paddingTop="4dp"
+                android:text="@={viewModel.notebook.content}"
+                android:textColorHint="@color/color_grey_757575" />
+
+            <LinearLayout
+                android:id="@+id/searchPlace"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/state_click"
+                android:orientation="horizontal">
+
+                <android.support.v7.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    app:srcCompat="@drawable/ic_place" />
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:enabled="false"
+                    android:gravity="center_vertical"
+                    android:padding="4dp"
+                    android:text="@={viewModel.notebook.place}"
+                    android:textColor="@color/color_grey_757575"
+                    android:textSize="16sp" />
+
+                <android.support.v7.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:paddingBottom="2dp"
+                    android:paddingLeft="8dp"
+                    android:paddingStart="8dp"
+                    android:paddingTop="2dp"
+                    app:srcCompat="@drawable/ic_search" />
+            </LinearLayout>
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+</layout>

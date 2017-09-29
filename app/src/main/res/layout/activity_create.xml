@@ -24,7 +24,6 @@
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             bind:layout_height="@{viewModel.imageSize > 0 ? @dimen/dp_270 :  @dimen/dp_56}">
 
-
             <android.support.design.widget.CollapsingToolbarLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -46,6 +45,7 @@
                         app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed" />
 
                     <android.support.v7.widget.Toolbar
+                        android:id="@+id/toolbar2"
                         android:layout_width="match_parent"
                         android:layout_height="?actionBarSize"
                         android:background="@android:color/transparent"
@@ -53,11 +53,11 @@
                         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
                         app:layout_collapseMode="pin"
                         app:layout_scrollFlags="scroll|enterAlways"
-                        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-                        />
+                        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
                 </FrameLayout>
 
                 <android.support.v7.widget.Toolbar
+                    android:id="@+id/toolbar"
                     android:layout_width="match_parent"
                     android:layout_height="?actionBarSize"
                     android:background="@android:color/transparent"
@@ -65,12 +65,51 @@
                     android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
                     app:layout_collapseMode="pin"
                     app:layout_scrollFlags="scroll|enterAlways"
-                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-                  />
+                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
             </android.support.design.widget.CollapsingToolbarLayout>
 
 
         </android.support.design.widget.AppBarLayout>
 
+        <include
+            android:id="@+id/layout_note_creation"
+            layout="@layout/layout_create_note"
+            bind:viewModel="@{viewModel}" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/doneCreateNote"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="16dp"
+            android:scaleType="fitCenter"
+            app:backgroundTint="@color/colorPrimary"
+            app:srcCompat="@drawable/ic_done" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/previewImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:scaleType="fitCenter"
+            android:visibility="@{viewModel.imageSize > 0 ? View.VISIBLE : View.GONE}"
+            app:backgroundTint="@color/colorPrimary"
+            app:layout_anchor="@id/app_bar_layout"
+            app:layout_anchorGravity="bottom|end"
+            app:srcCompat="@drawable/ic_view_image" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@drawable/bg_number_picture"
+            android:gravity="center"
+            android:text="@{viewModel.imageSize + ``}"
+            android:textColor="@color/color_white"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:visibility="@{viewModel.imageSize > 0 ? View.VISIBLE : View.GONE}"
+            app:layout_anchor="@id/app_bar_layout"
+            app:layout_anchorGravity="bottom|end" />
     </android.support.design.widget.CoordinatorLayout>
 </layout>
