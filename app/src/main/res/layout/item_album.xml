@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/tools"
+    >
+    <data>
+
+        <import type="java.lang.String"/>
+
+        <import type="org.apache.commons.lang3.StringUtils"/>
+
+        <variable
+            name="item"
+            type="com.nhahv.noteremember.ui.loadpicture.model.Folder"
+            />
+
+        <variable
+            name="viewModel"
+            type="com.nhahv.noteremember.ui.loadpicture.imagescreen.ImageScreenViewModel"
+            />
+
+        <variable
+            name="position"
+            type="int"
+            />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical"
+        >
+        <!--        android:onClick="@{()->viewModel.onStartImagePicker(item)}"
+-->
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/dp_4"
+            android:paddingLeft="@dimen/dp_16"
+            android:paddingRight="@dimen/dp_16"
+            android:paddingTop="@dimen/dp_4"
+            >
+
+            <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/image_folder"
+                android:layout_width="@dimen/dp_82"
+                android:layout_height="@dimen/dp_82"
+                android:scaleType="centerCrop"
+                bind:bindError="@{@drawable/icon_photo_48dp}"
+                bind:imageUrl="@{item.images.get(0)}"
+                />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/dp_16"
+                android:layout_marginStart="@dimen/dp_16"
+                android:layout_toEndOf="@+id/image_folder"
+                android:layout_toRightOf="@+id/image_folder"
+                android:text="@{StringUtils.capitalize(item.name)}"
+                android:textSize="15sp"
+                />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@id/image_arrow"
+                android:layout_toStartOf="@id/image_arrow"
+                android:padding="2dp"
+                android:text="@{String.valueOf(item.images.size())}"
+                bind:ignore="RelativeOverlap"
+                />
+
+            <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/image_arrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                app:srcCompat="@drawable/ic_arrow_right"
+                />
+        </RelativeLayout>
+
+        <View
+            android:layout_marginStart="118dp"
+            android:layout_marginLeft="118dp"
+            android:background="@color/color_grey_200"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+    </LinearLayout>
+</layout>

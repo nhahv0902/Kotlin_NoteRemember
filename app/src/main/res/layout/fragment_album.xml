@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="com.nhahv.noteremember.ui.loadpicture.album.AlbumViewModel" />
+            type="com.nhahv.noteremember.ui.loadpicture.imagescreen.ImageScreenViewModel" />
 
     </data>
 
@@ -17,7 +17,7 @@
         <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingTop="12dp"
+            app:adapter="@{viewModel.adapterAlbum}"
             app:layoutManager="LinearLayoutManager" />
 
         <android.support.design.widget.FloatingActionButton

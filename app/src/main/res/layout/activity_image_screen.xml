@@ -4,6 +4,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="viewModel"
             type="com.nhahv.noteremember.ui.loadpicture.imagescreen.ImageScreenViewModel" />
@@ -13,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <android.support.v7.widget.LinearLayoutCompat
+        <android.support.constraint.ConstraintLayout
             android:id="@+id/tabLayout"
             android:layout_width="0dp"
             android:layout_height="48dp"
@@ -23,25 +25,85 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:id="@+id/photos"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
-                android:layout_marginRight="10dp"
-                android:text="Photos"
-                android:textColor="@color/photo_title_state"
-                android:textSize="12sp" />
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{@string/text_number_item_picked(viewModel.picturePicked.size())}"
+                    android:textSize="13sp"
+                    android:visibility="@{viewModel.isPicking ? View.VISIBLE : View.GONE}" />
+
+                <TextView
+                    android:id="@+id/photos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
+                    android:layout_marginRight="12dp"
+                    android:text="@string/text_photos"
+                    android:textColor="@color/photo_title_state"
+                    android:textSize="13sp"
+                    android:visibility="@{viewModel.isPicking ? View.GONE : View.VISIBLE }" />
+
+                <TextView
+                    android:id="@+id/albums"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginStart="12dp"
+                    android:text="@string/text_albums"
+                    android:textColor="@color/photo_title_state"
+                    android:textSize="13sp"
+                    android:visibility="@{viewModel.isPicking ? View.GONE : View.VISIBLE }" />
+
+
+            </LinearLayout>
 
             <TextView
-                android:id="@+id/albums"
+                android:id="@+id/cancelPicked"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:text="Albums"
-                android:textColor="@color/photo_title_state"
-                android:textSize="12sp" />
-        </android.support.v7.widget.LinearLayoutCompat>
+                android:layout_marginLeft="8dp"
+                android:background="@drawable/bg_action_cancel_ok_pick_picture"
+                android:paddingBottom="6dp"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:paddingTop="6dp"
+                android:text="@string/action_cancel"
+                android:textColor="@color/color_grey_757575"
+                android:visibility="@{viewModel.isPicking ? View.VISIBLE : View.GONE}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <TextView
+                android:id="@+id/donePicked"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:background="@drawable/bg_action_cancel_ok_pick_picture"
+                android:paddingBottom="6dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:paddingTop="6dp"
+                android:text="@string/action_done"
+                android:textColor="@color/color_grey_757575"
+                android:visibility="@{viewModel.isPicking ? View.VISIBLE : View.GONE}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </android.support.constraint.ConstraintLayout>
 
         <View
             android:id="@+id/space"

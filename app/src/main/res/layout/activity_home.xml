@@ -38,10 +38,9 @@
                 android:background="?android:attr/windowBackground"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
+                bind:bottomNavigation="@{viewModel.position}"
                 app:layout_constraintRight_toRightOf="parent"
-                app:menu="@menu/home_navigation"
-                bind:bottomNavigation="@{viewModel}"
-                bind:viewPager="@{viewPager}" />
+                app:menu="@menu/home_navigation" />
         </android.support.constraint.ConstraintLayout>
 
         <android.support.v7.widget.AppCompatImageButton

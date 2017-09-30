@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="org.apache.commons.lang3.StringUtils" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="item"
+            type="com.nhahv.noteremember.ui.loadpicture.model.PicturePicker" />
+
+        <variable
+            name="viewModel"
+            type="com.nhahv.noteremember.ui.loadpicture.imagescreen.ImageScreenViewModel" />
+
+        <variable
+            name="position"
+            type="int" />
+    </data>
+
+    <com.nhahv.noteremember.ui.view.SquareRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="1dp">
+
+        <ImageView
+            android:id="@+id/picture"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:onClick="@{(view) -> viewModel.onClickPicture(item, position)}"
+            android:onLongClick="@{(view) -> viewModel.onLongClickPicture(item, position)}"
+            android:scaleType="fitCenter"
+            bind:bindError="@{@drawable/icon_photo_48dp}"
+            bind:imageUrl="@{item.path}" />
+
+        <ImageView
+            android:id="@+id/imagePick"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            bind:isPicked="@{item.isPicked}"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_margin="2dp"
+            android:visibility="@{viewModel.isPicking ? View.VISIBLE : View.GONE}"
+            bind:srcCompat="@drawable/ic_un_check_circle" />
+
+    </com.nhahv.noteremember.ui.view.SquareRelativeLayout>
+</layout>

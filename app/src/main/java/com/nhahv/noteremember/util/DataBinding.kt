@@ -1,61 +1,35 @@
 package com.nhahv.noteremember.util
 
 import android.databinding.BindingAdapter
+import android.graphics.drawable.Drawable
+import android.net.Uri
 import android.support.design.widget.BottomNavigationView
+import android.support.v4.app.FragmentPagerAdapter
 import android.support.v4.view.ViewPager
+import android.support.v4.widget.SwipeRefreshLayout
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.nhahv.noteremember.R
 import com.nhahv.noteremember.ui.home.HomeViewModel
+import com.nhahv.noteremember.ui.notebook.NotebookViewModel
 
 /**
  * Created by nhahv0902 on 9/28/17.
  */
 
-/*
-* Binding bottom navigation view and viewpager in main
-* MainActivity
-* */
-@BindingAdapter("bottomNavigation", "viewPager")
-fun bottomNavigation(view: BottomNavigationView, viewModel: HomeViewModel, viewPager: ViewPager) {
-    view.setOnNavigationItemSelectedListener { menuItem ->
-        when (menuItem.itemId) {
-            R.id.navigation_notebook -> {
-                viewModel.onSwitchNotebook()
-                viewPager.currentItem = 0
-            }
-            R.id.navigation_calendar -> {
-                viewModel.onSwitchCalendar()
-                viewPager.currentItem = 1
-            }
-            R.id.navigation_note_create -> {
-                viewModel.onCreateNote()
-            }
-            R.id.navigation_search -> {
 
-            }
-            R.id.navigation_setting -> {
-                viewModel.onSwitchSetting()
-                viewPager.currentItem = 4
-            }
-
-        }
-        true
+@BindingAdapter("bottomNavigation")
+fun navigation(view: BottomNavigationView, position: Int) {
+    view.selectedItemId = when (position) {
+        0 -> R.id.navigation_notebook
+        1 -> R.id.navigation_calendar
+        2 -> R.id.navigation_search
+        3 -> R.id.navigation_setting
+        else -> R.id.navigation_notebook
     }
-    viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
-        override fun onPageScrollStateChanged(p0: Int) {}
-
-        override fun onPageScrolled(p0: Int, p1: Float, p2: Int) {}
-
-        override fun onPageSelected(position: Int) {
-            view.selectedItemId = when (position) {
-                0 -> R.id.navigation_notebook
-                1 -> R.id.navigation_calendar
-                3 -> R.id.navigation_setting
-                else -> R.id.navigation_notebook
-            }
-        }
-    })
 }
 
 /*
@@ -67,4 +41,45 @@ fun setLayoutHeight(view: View, height: Float) {
     val layoutParams: ViewGroup.LayoutParams = view.layoutParams
     layoutParams.height = height.toInt()
     view.layoutParams = layoutParams
+}
+
+@BindingAdapter(value = *arrayOf("imageUrl", "imageUri", "bindError"), requireAll = false)
+fun imageUrl(view: ImageView, url: String?, uri: Uri?, error: Drawable) {
+    GlideApp.with(view.context)
+            .load(url ?: uri)
+            .error(error)
+            .placeholder(error)
+            .thumbnail(0.5F)
+            .diskCacheStrategy(DiskCacheStrategy.DATA)
+            .centerCrop()
+            .into(view)
+}
+
+@BindingAdapter("adapter", "currentItem")
+fun currentItem(view: ViewPager, adapter: FragmentPagerAdapter?, position: Int) {
+    adapter?.let {
+        view.adapter = adapter
+        view.currentItem = position
+    }
+}
+
+/*
+* Binding checked image in selected picture
+*
+* */
+
+@BindingAdapter("isPicked")
+fun isPicked(view: ImageView, isPicked: Boolean) {
+    view.setImageResource(if (isPicked) R.drawable.ic_check_circle else R.drawable.ic_un_check_circle)
+}
+
+
+@BindingAdapter("swipeRefreshLayout", "refresh")
+fun swipeRefreshLayout(view: SwipeRefreshLayout, viewModel: NotebookViewModel, isRefresh: Boolean) {
+    view.setColorSchemeResources(R.color.colorPrimary)
+    view.isRefreshing = isRefresh
+    view.setOnRefreshListener {
+        view.isRefreshing = true
+        viewModel.onLoadNotebookData()
+    }
 }

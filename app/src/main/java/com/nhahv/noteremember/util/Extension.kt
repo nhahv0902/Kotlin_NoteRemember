@@ -1,12 +1,14 @@
 package com.nhahv.noteremember.util
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.support.design.internal.BottomNavigationItemView
 import android.support.design.internal.BottomNavigationMenuView
 import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.util.Log
+import android.widget.Toast
 import org.apache.commons.lang3.StringUtils
 
 /**
@@ -37,4 +39,8 @@ fun AppCompatActivity.setupToolbar(toolbar: Toolbar) {
     setSupportActionBar(toolbar)
     title = StringUtils.capitalize(title.toString())
     supportActionBar?.setDisplayHomeAsUpEnabled(true)
+}
+
+fun AppCompatActivity.toast(context: Context, msg: Int) {
+    Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
 }

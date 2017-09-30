@@ -4,4 +4,12 @@
     <dimen name="bottom_navigation_height">48dp</dimen>
     <dimen name="dp_56">56dp</dimen>
     <dimen name="dp_270">270dp</dimen>
+    <dimen name="dp_4">4dp</dimen>
+    <dimen name="dp_16">16dp</dimen>
+    <dimen name="dp_82">82dp</dimen>
+    <dimen name="sp_17">17sp</dimen>
+    <dimen name="dp_8">8dp</dimen>
+    <dimen name="dp_60">60dp</dimen>
+    <dimen name="dp_2">2dp</dimen>
+    <dimen name="dp_6">6dp</dimen>
 </resources>

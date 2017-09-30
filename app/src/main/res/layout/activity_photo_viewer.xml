@@ -6,13 +6,16 @@
 
         <variable
             name="viewModel"
-            type="com.nhahv.noteremember.ui.loadpicture.imagescreen.ImageScreenViewModel" />
+            type="com.nhahv.noteremember.ui.create.photoview.PhotoViewerViewModel" />
     </data>
 
     <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:adapter="@{viewModel.adapterPhotos}"
+        app:adapter="@{viewModel.adapter}"
         app:layoutManager="GridLayoutManager"
-        app:spanCount="4" />
+        app:paddingEnd="1dp"
+        app:paddingStart="1dp"
+        app:spanCount="2" />
 </layout>

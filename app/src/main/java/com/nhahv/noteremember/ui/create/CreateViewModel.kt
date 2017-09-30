@@ -1,10 +1,15 @@
 package com.nhahv.noteremember.ui.create
 
+import android.app.Activity
 import android.arch.lifecycle.ViewModel
+import android.content.Intent
 import android.databinding.ObservableField
 import android.databinding.ObservableInt
 import com.nhahv.noteremember.data.Notebook
+import com.nhahv.noteremember.ui.loadpicture.preview.PictureViewPager
 import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
 
 /**
  * Exposes the data to be used in the Create screen.
@@ -13,10 +18,12 @@ import java.util.*
 class CreateViewModel : ViewModel() {
 
     val calendar: Calendar = Calendar.getInstance()
-
-    private val imageHashMap: HashMap<String, String> = HashMap()
     val imageSize: ObservableInt = ObservableInt(0)
-    val adapter: ObservableField<ImageViewPagerAdapter> = ObservableField(ImageViewPagerAdapter(imageHashMap))
+
+    val imageHashMap: HashMap<String, String> = HashMap()
+    val pictures: ArrayList<String> = ArrayList()
+    val adapter: ObservableField<PictureViewPager> = ObservableField(PictureViewPager(pictures))
+
     val dayOfMonth: ObservableField<String> = ObservableField()
     val dayOfWeek: ObservableField<String> = ObservableField()
     val monthOfYear: ObservableField<String> = ObservableField()
@@ -53,6 +60,29 @@ class CreateViewModel : ViewModel() {
         calendar.set(Calendar.MONTH, monthOfYear)
         calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
         convertDateTime()
+    }
+
+    fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (resultCode == Activity.RESULT_CANCELED) return
+        val images: ArrayList<String> = data?.extras!!.getStringArrayList("items")
+        when (requestCode) {
+            CreateActivity.REQUEST_CODE -> {
+                images.filterNot { imageHashMap.containsKey(it) }
+                        .forEach { imageHashMap.put(it, it) }
+                pictures.clear()
+                pictures.addAll(imageHashMap.values)
+                imageSize.set(pictures.size)
+                adapter.notifyChange()
+            }
+            CreateActivity.REQUEST_CODE_VIEWER -> {
+                imageHashMap.clear()
+                for (item in images) {
+                    imageHashMap.put(item, item)
+                }
+                imageSize.set(imageHashMap.size)
+                adapter.notifyChange()
+            }
+        }
     }
 
     private fun dayOfMonth() = dayOfMonth.get()

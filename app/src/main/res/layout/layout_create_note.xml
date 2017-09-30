@@ -22,55 +22,63 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <RelativeLayout
+            <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="16dp">
+                android:orientation="horizontal">
 
-                <android.support.v7.widget.AppCompatTextView
+                <TextView
                     android:id="@+id/dayOfMonth"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginStart="16dp"
+                    android:gravity="bottom"
+                    android:paddingTop="-10dp"
                     android:text="@{viewModel.dayOfMonth}"
-                    android:textSize="42sp" />
+                    android:textSize="52sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-                <android.support.v7.widget.AppCompatTextView
-                    android:id="@+id/dayOfWeek"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_toEndOf="@id/dayOfMonth"
-                    android:layout_toRightOf="@id/dayOfMonth"
-                    android:text="@{viewModel.dayOfWeek}"
-                    android:textSize="15sp" />
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toRightOf="@id/dayOfMonth"
+                    app:layout_constraintTop_toTopOf="parent">
 
-                <android.support.v7.widget.AppCompatTextView
-                    android:id="@+id/monthOfYear"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignLeft="@+id/dayOfWeek"
-                    android:layout_alignStart="@+id/dayOfWeek"
-                    android:layout_below="@+id/dayOfWeek"
-                    android:text="@{viewModel.monthOfYear}"
-                    android:textAllCaps="true"
-                    android:textSize="18sp" />
+                    <TextView
+                        android:id="@+id/dayOfWeek"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{viewModel.dayOfWeek}"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toTopOf="@id/monthOfYear"
+                        app:layout_constraintLeft_toRightOf="@id/dayOfMonth"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                <android.support.v7.widget.AppCompatTextView
+                    <TextView
+                        android:id="@+id/monthOfYear"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{viewModel.monthOfYear}"
+                        android:textAllCaps="true"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
+                <TextView
                     android:id="@+id/timeOfDay"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_below="@+id/dayOfWeek"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginRight="16dp"
                     android:text="@{viewModel.notebook.time}"
-                    android:textSize="16sp" />
-            </RelativeLayout>
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </android.support.constraint.ConstraintLayout>
 
             <android.support.v7.widget.AppCompatEditText
                 android:layout_width="match_parent"
@@ -85,7 +93,8 @@
                 android:paddingRight="4dp"
                 android:paddingTop="8dp"
                 android:text="@={viewModel.notebook.title}"
-                android:textColorHint="@color/color_grey_757575" />
+                android:textColorHint="@color/color_grey_757575"
+                android:textSize="14sp" />
 
             <android.support.v7.widget.AppCompatEditText
                 android:layout_width="match_parent"
@@ -103,7 +112,8 @@
                 android:paddingRight="4dp"
                 android:paddingTop="4dp"
                 android:text="@={viewModel.notebook.content}"
-                android:textColorHint="@color/color_grey_757575" />
+                android:textColorHint="@color/color_grey_757575"
+                android:textSize="14sp" />
 
             <LinearLayout
                 android:id="@+id/searchPlace"
